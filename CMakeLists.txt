@@ -91,11 +91,11 @@ install(TARGETS OpenGLSomethingFrameDisplayerEVO
 
 # ★★★★ ФУНКЦИЯ ДЛЯ КОПИРОВАНИЯ РЕСУРСОВ ★★★★
 function(copy_opengl_resources TARGET_NAME)
-    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/res)
+    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/OpenGLSomethingFrameDisplayerEVO/res)
         add_custom_command(
             TARGET ${TARGET_NAME} POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_directory
-                ${CMAKE_CURRENT_SOURCE_DIR}/res
+                ${CMAKE_CURRENT_SOURCE_DIR}/OpenGLSomethingFrameDisplayerEVO/res
                 $<TARGET_FILE_DIR:${TARGET_NAME}>/res
             COMMENT "Copying OpenGLSomethingFrameDisplayerEVO resources"
             VERBATIM
