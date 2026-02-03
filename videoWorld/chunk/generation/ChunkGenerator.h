@@ -5,6 +5,8 @@
 #include <videoWorld/block/BlocksManager.h>
 #include <random>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class ChunkGenerator
 {
 private:
@@ -48,3 +50,5 @@ private:
     static constexpr int TREE_HEIGHT_MAX = 8;
     static constexpr int TREE_CANOPY_RADIUS = 4;
 };
+
+}

@@ -5,6 +5,8 @@
 #include <functional>
 #include <cmath>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 std::unordered_map<std::string, const BlockInfo*> ChunkGenerator::m_blockCache;
 std::mt19937 ChunkGenerator::m_randomEngine(std::random_device{}());
 
@@ -237,4 +239,6 @@ void ChunkGenerator::GenerateChunk(ChunkInstance& chunk, std::vector<std::vector
     
    GenerateTerrain(chunk, worldX, worldZ, data);
    GenerateTrees(chunk, worldX, worldZ);
+}
+
 }

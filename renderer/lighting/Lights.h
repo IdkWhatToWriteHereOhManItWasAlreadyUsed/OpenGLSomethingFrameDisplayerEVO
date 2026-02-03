@@ -4,6 +4,8 @@
 
 using namespace glm;
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 struct DirectionalLight 
 {
     vec3 direction;
@@ -25,3 +27,5 @@ struct PointLight
     float linear;
     float quadratic;
 };
+
+}

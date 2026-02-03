@@ -4,6 +4,8 @@
 #include <mutex>
 #include <stack>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 template <typename T>
 class VectorPool
 {
@@ -75,3 +77,5 @@ private:
     mutable std::mutex m_mutex;
     size_t m_capacity;
 };
+
+}

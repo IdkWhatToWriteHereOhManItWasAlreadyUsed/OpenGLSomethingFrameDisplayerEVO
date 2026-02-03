@@ -9,6 +9,8 @@
 #include "videoWorld/block/Block.h"
 #include <renderer/Mesh.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 using VertexDataPair = std::pair<std::vector<Vertex>, std::vector<GLuint>>;
 
 class ChunkInstance
@@ -38,3 +40,5 @@ public:
     void GenerateGraphicalDataIfNeeded(ChunkInstance* left, ChunkInstance* right, ChunkInstance* front, ChunkInstance* back);
 
 };
+
+}

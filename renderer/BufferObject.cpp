@@ -1,5 +1,7 @@
 ﻿#include "BufferObject.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 BufferObject::BufferObject(BufferType type)
     : m_type(static_cast<GLenum>(type))
 {
@@ -54,4 +56,6 @@ void BufferObject::Delete()
         glDeleteBuffers(1, &m_bufferID);
         m_bufferID = 0;
     }
+}
+
 }

@@ -1,5 +1,7 @@
 #include "ThreadPool.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 ThreadPool::ThreadPool(size_t num_threads) : m_nextTaskID{0}, m_needStop{false}
 {
     for (size_t i = 0; i < num_threads; ++i)
@@ -222,4 +224,6 @@ void ThreadPool::ThreadProc()
             CleanupCompletedTasks();
         }
     }
+}
+
 }

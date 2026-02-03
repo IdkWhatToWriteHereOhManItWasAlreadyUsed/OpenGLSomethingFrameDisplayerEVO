@@ -7,6 +7,8 @@
 #include "videoWorld/chunk/model/Chunk.h"
 #include <array>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 using VertexDataPair = std::pair<std::vector<Vertex>, std::vector<GLuint>>;
 typedef std::pair<glm::vec3, glm::vec3> AABB;
 
@@ -43,3 +45,6 @@ struct ChunkGraphicalData
 
     const MeshData& operator [] (const std::size_t t) const { return allBlockTypesMeshData[t]; }
 };
+
+
+}

@@ -17,6 +17,9 @@
 #include <libs/robin_hood.h>
 #include <vector>
 
+namespace OpenGLSomethingFrameDisplayerEVO
+{
+
 struct RayCastResult;
 class RayCaster;
 
@@ -77,3 +80,5 @@ private:
     void GenerateStrip(std::vector<std::vector<uint8_t>>& data, int startX, int endX,int threadIndex);
     void GenerateMeshesOfStrip(std::vector<std::vector<uint8_t>>& data, int startX, int endX, int threadIndex);
 };
+
+}

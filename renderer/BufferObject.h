@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-
 #include <GL/glew.h>
-
 #include <vector>
+
+namespace OpenGLSomethingFrameDisplayerEVO {
 
 enum class BufferType 
 {
@@ -46,3 +46,5 @@ private:
     GLuint m_bufferID = 0;
     GLenum m_type;
 };
+
+}

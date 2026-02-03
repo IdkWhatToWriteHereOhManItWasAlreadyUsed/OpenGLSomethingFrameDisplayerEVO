@@ -3,6 +3,8 @@
 #include <array>
 #include <videoWorld/block/Block.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 const int CHUNK_WIDTH = 16;
 const int CHUNK_LENGTH = 16;
 const int CHUNK_HEIGHT = 30;
@@ -24,3 +26,5 @@ public:
 	void SetBlock(int x, int z, int y, const Block block);
 	Block* GetBlock(int x, int z, int y) const;  
 };
+
+}

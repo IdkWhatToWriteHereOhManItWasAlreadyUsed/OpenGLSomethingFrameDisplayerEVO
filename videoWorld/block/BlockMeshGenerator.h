@@ -28,6 +28,8 @@ private:
 #include <videoWorld/chunk/rendering/ChunkGraphicalData.h>
 #include <unordered_map>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class BlockMeshGenerator
 {
 public:
@@ -46,3 +48,5 @@ public:
         const Block* top
     );
 };
+
+}

@@ -1,6 +1,8 @@
 ﻿#include "BlocksManager.h"
 #include <iostream>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 using json = nlohmann::json;
 
 std::vector<std::unique_ptr<BlockInfo>> BlocksManager::m_blocks;
@@ -230,4 +232,6 @@ glm::vec3 BlocksManager::GetFaceNormal(const std::string& geometryType, const st
     }
 
     return glm::vec3(0.0f);
+}
+
 }

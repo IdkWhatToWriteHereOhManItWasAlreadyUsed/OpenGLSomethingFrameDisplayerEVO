@@ -3,6 +3,8 @@
 #include <iostream>
 #include <sstream>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 std::string Shader::ReadFileFast(const std::string& filePath) {
     std::ifstream file(filePath, std::ios::binary | std::ios::ate);
     if (!file.is_open()) {
@@ -112,4 +114,6 @@ void Shader::CheckLinkErrors(GLuint program) {
         std::cerr << "ERROR::PROGRAM_LINKING_ERROR\n"
             << infoLog << "\n" << std::endl;
     }
+}
+
 }

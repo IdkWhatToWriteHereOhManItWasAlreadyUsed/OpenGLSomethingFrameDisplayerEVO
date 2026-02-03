@@ -3,6 +3,8 @@
 #include <vector>
 #include <GL/glew.h> 
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 enum class AttribType
 {
     Float = GL_FLOAT
@@ -35,3 +37,5 @@ private:
     bool m_active = false;
     std::vector<GLuint> m_attribsList;
 };
+
+}

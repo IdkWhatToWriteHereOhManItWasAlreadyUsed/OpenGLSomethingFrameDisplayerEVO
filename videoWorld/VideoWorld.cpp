@@ -18,6 +18,9 @@
 #include "videoWorld/chunk/model/Chunk.h"
 #include <array>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
+
 VideoWorld::VideoWorld()
 {
 }
@@ -350,4 +353,7 @@ void VideoWorld::GenerateMeshesOfStrip(std::vector<std::vector<uint8_t>>& data, 
             }   
         }
     }
+}
+
+
 }

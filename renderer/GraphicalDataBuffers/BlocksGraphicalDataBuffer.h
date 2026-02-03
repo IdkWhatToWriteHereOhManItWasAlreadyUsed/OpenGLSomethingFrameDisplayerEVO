@@ -9,6 +9,8 @@
 #include <libs/robin_hood.h>
 #include <GL/glew.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 using VertexDataPair = std::pair<std::vector<Vertex>, std::vector<GLuint>>;
 
 struct GraphicalBufferItem
@@ -155,3 +157,5 @@ private:
     GLuint m_maxIndexToAdd = 0;
     mutable std::mutex m_mutex;
 };
+
+}

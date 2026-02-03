@@ -17,6 +17,8 @@
 #include <renderer/Shader.h>
 #include <videoWorld/VideoWorld.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 struct GlobalState
 {
     int windowWidth = 800;
@@ -166,3 +168,5 @@ private:
     ImGuiIO io;
     Frustum frustum;
 };
+
+}

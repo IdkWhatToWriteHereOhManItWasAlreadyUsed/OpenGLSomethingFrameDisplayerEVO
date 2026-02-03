@@ -7,6 +7,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <libs/robin_hood.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class Shader
 {
 private:
@@ -94,5 +96,7 @@ private:
     void CheckLinkErrors(GLuint program);
     static std::string ReadFileFast(const std::string& filePath);
 };
+
+}
 
 #endif

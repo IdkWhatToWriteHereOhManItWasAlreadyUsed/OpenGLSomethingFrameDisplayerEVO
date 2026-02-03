@@ -5,6 +5,8 @@
 #include <glm/glm.hpp>
 #include <videoWorld/VideoWorld.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 struct Block;
 struct BlockInfo;
 
@@ -162,3 +164,5 @@ private:
         }
     }
 };
+
+}

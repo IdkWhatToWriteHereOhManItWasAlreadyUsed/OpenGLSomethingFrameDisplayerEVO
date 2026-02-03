@@ -6,6 +6,8 @@
 #include <memory>
 #include <GL/glew.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class Renderer
 {
 private:
@@ -80,3 +82,5 @@ private:
     std::vector<Mesh*> m_batchQueue;
     int m_width = 0, m_height = 0;
 };
+
+}

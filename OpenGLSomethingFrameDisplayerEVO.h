@@ -8,6 +8,8 @@
 #include <vector>
 #include <cstdint>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class OpenGLSomethingFrameDisplayerEVO
 {
 private:
@@ -69,3 +71,5 @@ private:
     
     uint8_t ClampHeight(float height);
 };
+
+}

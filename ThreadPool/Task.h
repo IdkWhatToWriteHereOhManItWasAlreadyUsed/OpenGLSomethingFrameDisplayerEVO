@@ -1,13 +1,13 @@
 #pragma once
 
-#include <stdexcept>
 #include <type_traits>
 #include <iostream>
 #include <tuple>
 #include <functional>
 #include <mutex>
 #include <condition_variable>
-#include <chrono>
+
+namespace OpenGLSomethingFrameDisplayerEVO {
 
 class IInvokable
 {
@@ -245,3 +245,5 @@ public:
         return m_hasStarted;
     }
 };
+
+}

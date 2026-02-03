@@ -5,6 +5,8 @@
 #include "BufferObject.h"
 #include <glm/glm.hpp>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 struct Vertex
 {
     glm::vec3 Position;
@@ -41,3 +43,5 @@ private:
     std::vector<Vertex> m_vertices;
     std::vector<GLuint> m_indices;
 };
+
+}

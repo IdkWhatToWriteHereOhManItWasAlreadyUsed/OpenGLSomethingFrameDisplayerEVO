@@ -24,6 +24,8 @@
 #include <videoWorld/chunk/rendering/ChunkGraphicalData.h>
 #include <renderer/lighting/Lights.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 static void DirectionalLightEditor(DirectionalLight& sunLight)
 {
     if (ImGui::CollapsingHeader("Sun Light", ImGuiTreeNodeFlags_DefaultOpen))
@@ -389,4 +391,6 @@ void Game::RenderUI()
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
 }

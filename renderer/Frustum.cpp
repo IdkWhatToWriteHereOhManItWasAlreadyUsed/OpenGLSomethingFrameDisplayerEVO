@@ -1,5 +1,7 @@
 ﻿#include "Frustum.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 void Frustum::update(const glm::mat4& viewProjectionMatrix) 
 {
     extractPlanes(viewProjectionMatrix);
@@ -117,4 +119,6 @@ bool Frustum::isSphereOutsidePlane(const glm::vec3& center, float radius, const 
 {
     float distance = getDistanceToPlane(center, plane);
     return distance < -radius;
+}
+
 }

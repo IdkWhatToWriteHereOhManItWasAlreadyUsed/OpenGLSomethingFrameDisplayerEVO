@@ -3,6 +3,8 @@
 #include <glm/glm.hpp>
 #include <array>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 #undef NEAR
 #undef FAR
 
@@ -33,3 +35,5 @@ private:
     bool isAABBOutsidePlane(const glm::vec3& min, const glm::vec3& max, const glm::vec4& plane) const;
     bool isSphereOutsidePlane(const glm::vec3& center, float radius, const glm::vec4& plane) const;
 };
+
+}

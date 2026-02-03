@@ -1,5 +1,7 @@
 ﻿#include "Chunk.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 Chunk::Chunk()
 {
 }
@@ -20,4 +22,6 @@ Block* Chunk::GetBlock(int x, int z, int y) const
         && z < CHUNK_LENGTH && z >= 0
         ? const_cast<Block*>(&m_blocks[x][z][y])
         : nullptr;
+}
+
 }

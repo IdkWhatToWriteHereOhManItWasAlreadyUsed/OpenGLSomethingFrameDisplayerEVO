@@ -11,6 +11,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <libs/stb_image.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 Renderer::Renderer()
 {
     m_batchQueue.reserve(5000);
@@ -425,4 +427,6 @@ void Renderer::RenderMeshes()
     }
 
     glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 }

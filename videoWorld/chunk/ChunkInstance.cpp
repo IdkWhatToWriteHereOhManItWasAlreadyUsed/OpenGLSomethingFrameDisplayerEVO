@@ -5,6 +5,8 @@
 #include <videoWorld/block/Block.h>
 #include "model/Chunk.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 ChunkInstance::ChunkInstance(int x, int z)
 {
     m_chunk = std::make_unique<Chunk>();
@@ -49,4 +51,6 @@ void ChunkInstance::GenerateGraphicalDataIfNeeded(ChunkInstance* left, ChunkInst
 
         m_isMeshDataValid = true;
     }
+}
+
 }

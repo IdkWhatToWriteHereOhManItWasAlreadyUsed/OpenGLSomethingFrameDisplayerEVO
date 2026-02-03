@@ -22,6 +22,8 @@
 #include <videoWorld/chunk/rendering/ChunkGraphicalData.h>
 #include <renderer/lighting/Lights.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 void Game::Run()
 {
     MainLoop();
@@ -173,4 +175,6 @@ void Game::Cleanup()
     ImGui::DestroyContext();
 
     glfwTerminate();
+}
+
 }

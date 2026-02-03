@@ -1,5 +1,7 @@
 ﻿#include "Camera.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 const GLfloat YAW = -89.0f;
 const GLfloat PITCH = -89.0f;
 const GLfloat SPEED = 240.0f;
@@ -87,4 +89,6 @@ void Camera::updateCameraVectors()
     this->Front = glm::normalize(front);
     this->Right = glm::normalize(glm::cross(this->Front, this->WorldUp));
     this->Up = glm::normalize(glm::cross(this->Right, this->Front));
+}
+
 }

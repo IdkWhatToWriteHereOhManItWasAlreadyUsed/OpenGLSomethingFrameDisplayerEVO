@@ -1,6 +1,8 @@
 ﻿#include "InputManager.h"
 #include <cstring>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 bool InputManager::keys[1024] = { false };
 bool InputManager::prevKeys[1024] = { false };
 
@@ -241,4 +243,6 @@ InputState InputManager::GetInputState()
     state.mouseWheelDelta = GetMouseWheelDelta();
 
     return state;
+}
+
 }

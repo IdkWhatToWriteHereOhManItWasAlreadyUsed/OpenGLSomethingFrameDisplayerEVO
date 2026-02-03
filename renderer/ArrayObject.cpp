@@ -1,6 +1,7 @@
 ﻿#include "ArrayObject.h"
 #include <iostream>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
 
 ArrayObject::ArrayObject()
 { 
@@ -83,4 +84,6 @@ void ArrayObject::Delete()
     //std::cout << "d " << m_arrayID << '\n';
     glDeleteVertexArrays(1, &m_arrayID);
     m_arrayID = 0;
+}
+
 }

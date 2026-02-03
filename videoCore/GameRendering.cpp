@@ -17,6 +17,8 @@
 #include <videoWorld/chunk/rendering/ChunkGraphicalData.h>
 #include <renderer/lighting/Lights.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 void Game::RenderWorld()
 {
     glm::mat4 view = camera.GetViewMatrix();
@@ -463,4 +465,6 @@ void Game::RenderMeshes()
     //std::cout << m_batchQueue.size() << '\n';
 
     glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 }

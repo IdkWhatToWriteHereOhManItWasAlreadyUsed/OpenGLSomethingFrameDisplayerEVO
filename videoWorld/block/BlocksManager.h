@@ -9,6 +9,8 @@
 #include <libs/nlohmann/json.hpp>
 #include "Block.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class BlocksManager
 {
 private:
@@ -43,3 +45,5 @@ private:
     static Geometry ParseGeometry(const nlohmann::json& geometryJson);
     static BlockInfo ParseBlockType(const nlohmann::json& blockJson);
 };
+
+}

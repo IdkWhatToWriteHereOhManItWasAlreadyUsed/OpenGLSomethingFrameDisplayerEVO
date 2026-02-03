@@ -5,6 +5,8 @@
 #include <vector>
 #include <mutex>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 BlocksGraphicalDataBuffer::BlocksGraphicalDataBuffer()
 {
     std::lock_guard<std::mutex> lock(m_mutex);
@@ -89,4 +91,6 @@ std::vector<GraphicalBufferItem>& BlocksGraphicalDataBuffer::LoadGraphicalData()
 
     m_pending_writes.clear();
     return m_graphicalData;
+}
+
 }

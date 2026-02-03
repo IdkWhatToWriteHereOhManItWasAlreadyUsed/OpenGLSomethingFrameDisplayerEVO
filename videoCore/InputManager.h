@@ -3,6 +3,8 @@
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class InputManager
 {
 public:
@@ -71,3 +73,5 @@ struct InputState
     glm::vec2 mouseDelta;
     float mouseWheelDelta;
 };
+
+}

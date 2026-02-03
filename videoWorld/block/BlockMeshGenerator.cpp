@@ -57,6 +57,8 @@
 #include "Block.h"
 #include <GL/glew.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 std::unordered_map<std::string, VertexDataPair> BlockMeshGenerator::m_cachedGeometryMeshes;
 
 void BlockMeshGenerator::InitialiseCachesMeshes()
@@ -181,6 +183,8 @@ std::pair<std::vector<Vertex>, std::vector<GLuint>> BlockMeshGenerator::GetBlock
         }
         return std::pair(blockVertices, blockIndices);
     }
+}
+
 }
 
 

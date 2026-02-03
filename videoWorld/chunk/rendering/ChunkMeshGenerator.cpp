@@ -5,6 +5,8 @@
 #include <videoWorld/block/BlockMeshGenerator.h>
 #include <utility>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 ChunkGraphicalData ChunkMeshGenerator::GetChunkGraphicalData(
     const Chunk& chunk,
     const Chunk* left, const Chunk* right,
@@ -125,4 +127,6 @@ ChunkGraphicalData ChunkMeshGenerator::GetChunkGraphicalData(
     graphicalData[GeometryType::Solid] = { std::move(solidBlocksGraphicalData), 0 };
     graphicalData[GeometryType::Transparent] = { std::move(transparentBlocksGraphicalData), 0 };
     return graphicalData;
+}
+
 }

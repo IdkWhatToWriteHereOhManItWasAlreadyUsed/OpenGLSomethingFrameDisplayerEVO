@@ -12,6 +12,8 @@
 
 #include "Task.h"
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 class ThreadPool
 {
 private:
@@ -49,3 +51,5 @@ public:
 private:
     void CleanupCompletedTasks();
 };
+
+}

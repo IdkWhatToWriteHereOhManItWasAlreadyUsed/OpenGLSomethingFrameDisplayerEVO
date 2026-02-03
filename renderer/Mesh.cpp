@@ -3,6 +3,8 @@
 #include <vector>
 #include <GlobalVectorPool.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 Mesh::Mesh()
 {
 }
@@ -72,4 +74,6 @@ void Mesh::Delete()
     indexVectorPool.Release(&m_indices);
     //m_vertices.clear();
     //m_indices.clear();
+}
+
 }

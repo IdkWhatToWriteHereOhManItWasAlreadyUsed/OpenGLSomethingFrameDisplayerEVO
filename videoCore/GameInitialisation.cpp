@@ -30,6 +30,7 @@
 #include <videoWorld/chunk/rendering/ChunkGraphicalData.h>
 #include <renderer/lighting/Lights.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
 
 Game::Game()
 {
@@ -346,4 +347,7 @@ void Game::InitZBuffer()
     }
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+
 }

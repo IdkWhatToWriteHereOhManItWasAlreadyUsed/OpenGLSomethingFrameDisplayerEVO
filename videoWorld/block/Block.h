@@ -4,6 +4,8 @@
 #include <string>
 #include <renderer/Mesh.h>
 
+namespace OpenGLSomethingFrameDisplayerEVO {
+
 struct Face
 {
     std::string name;
@@ -48,3 +50,5 @@ struct Block
         return blockInfo->block_name;
     }
 };
+
+}
