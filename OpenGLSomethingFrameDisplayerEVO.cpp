@@ -92,9 +92,9 @@ void OpenGLSomethingFrameDisplayerEVO::Start()
     m_game.Run();
 }
 
-void OpenGLSomethingFrameDisplayerEVO::DisplayFrame(uint8_t **data)
+void OpenGLSomethingFrameDisplayerEVO::DisplayFrame(void* data)
 {
-    uint8_t* pixel_data = data[0];
+    uint8_t* pixel_data = (uint8_t* )data;
     int stride = m_videoWidth * 3;
     
     int rowsPerStrip = m_videoHeight / m_threadCount;

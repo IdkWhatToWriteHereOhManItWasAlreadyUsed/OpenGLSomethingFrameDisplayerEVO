@@ -40,7 +40,7 @@ public:
     void InitialiseGame(int screenWidth, int screenHeight);
     void WaitForGameInit();
     void Start();
-    void DisplayFrame(uint8_t **data);
+    void DisplayFrame(void* data);
     
 private:
     static constexpr int MAX_HEIGHT = 25;
