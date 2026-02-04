@@ -1,7 +1,5 @@
 ﻿#include "Game.h"
 #include "videoWorld/VideoWorld.h"
-#include <SDL2/SDL_filesystem.h>
-#include <filesystem>
 
 #ifdef BOJE_CHEL
 #include <windows.h>
@@ -30,6 +28,9 @@
 #include <videoWorld/chunk/rendering/ChunkGraphicalData.h>
 #include <renderer/lighting/Lights.h>
 
+#include <filesystem>
+namespace fs = std::filesystem;
+
 namespace OpenGLSomethingFrameDisplayerEVO {
 
 Game::Game()
@@ -46,19 +47,22 @@ bool Game::Initialise(int width, int height, int videoWidth, int videoHeight)
     if (!InitWindow())
         return false;
 
-        std::cout << "windowt inited\n";
+    std::cout << "windowt inited\n";
+
     if (!InitIMGUI())
         return false;
 
-        std::cout << "imgui inited\n";
+    std::cout << "imgui inited\n";
+
     if (!InitBlocksManager())
         return false;
 
-        std::cout << "blocks inited\n";
+    std::cout << "blocks inited\n";
+    
     if (!InitShaders())   
         return false;
 
-        std::cout << "Shaders inited\n";
+    std::cout << "Shaders inited\n";
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -178,31 +182,100 @@ bool Game::InitWindow()
 
 bool Game::InitBlocksManager()
 {
+    fs::path basePath = fs::current_path();
+    
+    fs::path blocksJson = basePath / "res" / "blocks" / "blocks.json";
+    fs::path geometriesJson = basePath / "res" / "blocks" / "geometries.json";
+    
+    if (!fs::exists(blocksJson)) {
+        std::cout << "Blocks JSON not found: " << blocksJson << std::endl;
+        return false;
+    }
+    if (!fs::exists(geometriesJson)) {
+        std::cout << "Geometries JSON not found: " << geometriesJson << std::endl;
+        return false;
+    }
+    
     return BlocksManager::LoadBlocksData(
-        std::string(SDL_GetBasePath()) + "res/blocks/blocks.json", 
-    std::string(SDL_GetBasePath()) + "res/blocks/geometries.json");
+        blocksJson.string().c_str(), 
+        geometriesJson.string().c_str()
+    );
 }
 
 bool Game::InitShaders()
-{ 
+{
     try
     {
+        fs::path basePath = fs::current_path();
+        
+        fs::path defaultVert = basePath / "res" / "shaders" / "default.vs.glsl";
+        fs::path defaultFrag = basePath / "res" / "shaders" / "default.frag.glsl";
+        
+        if (!fs::exists(defaultVert)) {
+            std::cout << "Shader not found: " << defaultVert << std::endl;
+            return false;
+        }
+        if (!fs::exists(defaultFrag)) {
+            std::cout << "Shader not found: " << defaultFrag << std::endl;
+            return false;
+        }
+        
         defaultShader = std::make_unique<Shader>(
-            std::string(SDL_GetBasePath()) + ("res/shaders/default.vs.glsl"), 
-            std::string(SDL_GetBasePath()) + ("res/shaders/default.frag.glsl"));
-
+            defaultVert.string().c_str(),
+            defaultFrag.string().c_str()
+        );
+        
+        fs::path hilightVert = basePath / "res" / "shaders" / "hilight.vs.glsl";
+        fs::path hilightFrag = basePath / "res" / "shaders" / "hilight.frag.glsl";
+        
+        if (!fs::exists(hilightVert) || !fs::exists(hilightFrag)) {
+            std::cout << "Hilight shaders not found" << std::endl;
+            return false;
+        }
+        
         hilightShader = std::make_unique<Shader>(
-            std::string(SDL_GetBasePath()) + ("res/shaders/hilight.vs.glsl"), 
-           std::string(SDL_GetBasePath()) + ("res/shaders/hilight.frag.glsl"));
+            hilightVert.string().c_str(),
+            hilightFrag.string().c_str()
+        );
+        
+        fs::path zPrepassVert = basePath / "res" / "shaders" / "zPrepass.vs.glsl";
+        fs::path zPrepassFrag = basePath / "res" / "shaders" / "zPrepass.frag.glsl";
+        
+        if (!fs::exists(zPrepassVert) || !fs::exists(zPrepassFrag)) {
+            std::cout << "ZPrepass shaders not found" << std::endl;
+            return false;
+        }
+        
         zPrepassShader = std::make_unique<Shader>(
-            std::string(SDL_GetBasePath()) + ("res/shaders/zPrepass.vs.glsl"), 
-           std::string(SDL_GetBasePath()) +  ("res/shaders/zPrepass.frag.glsl"));
+            zPrepassVert.string().c_str(),
+            zPrepassFrag.string().c_str()
+        );
+        
+        fs::path geometryVert = basePath / "res" / "shaders" / "gPass.vs.glsl";
+        fs::path geometryFrag = basePath / "res" / "shaders" / "gPass.frag.glsl";
+        
+        if (!fs::exists(geometryVert) || !fs::exists(geometryFrag)) {
+            std::cout << "Geometry shaders not found" << std::endl;
+            return false;
+        }
+        
         geometryShader = std::make_unique<Shader>(
-           std::string(SDL_GetBasePath()) + ("res/shaders/gPass.vs.glsl"), 
-          std::string(SDL_GetBasePath()) +  ("res/shaders/gPass.frag.glsl"));
+            geometryVert.string().c_str(),
+            geometryFrag.string().c_str()
+        );
+        
+        fs::path lightingVert = basePath / "res" / "shaders" / "lightPass.vs.glsl";
+        fs::path lightingFrag = basePath / "res" / "shaders" / "lightPass.frag.glsl";
+        
+        if (!fs::exists(lightingVert) || !fs::exists(lightingFrag)) {
+            std::cout << "Lighting shaders not found" << std::endl;
+            return false;
+        }
+        
         lightingShader = std::make_unique<Shader>(
-           std::string(SDL_GetBasePath()) + ("res/shaders/lightPass.vs.glsl"), 
-          std::string(SDL_GetBasePath()) +  ("res/shaders/lightPass.frag.glsl"));
+            lightingVert.string().c_str(),
+            lightingFrag.string().c_str()
+        );
 
         return true;
     }
@@ -215,18 +288,25 @@ bool Game::InitShaders()
 
 void Game::InitTexture()
 {
+    fs::path basePath = fs::current_path();
+    fs::path texturePath = basePath / "res" / "textures" / "blocks.png";
+    
+    if (!fs::exists(texturePath)) {
+        std::cerr << "Texture file not found: " << texturePath << std::endl;
+        return;
+    }
+    
     int width, height, channels;
-
-    unsigned char* image = stbi_load(std::string(std::string(SDL_GetBasePath()) + "res/textures/blocks.png").c_str(), &width, &height, &channels, STBI_rgb_alpha);
+    unsigned char* image = stbi_load(texturePath.string().c_str(), &width, &height, &channels, STBI_rgb_alpha);
 
     if (image == nullptr) {
-        std::cerr << "Failed to load texture: " << "res/textures/blocks.png" << std::endl;
+        std::cerr << "Failed to load texture: " << texturePath << std::endl;
         std::cerr << "STBI error: " << stbi_failure_reason() << std::endl;
         return;
     }
 
-    std::cout << "Loaded texture: " << "res/textures/blocks.png"
-        << " (" << width << "x" << height << ", " << channels << " channels)" << std::endl;
+    std::cout << "Loaded texture: " << texturePath 
+              << " (" << width << "x" << height << ", " << channels << " channels)" << std::endl;
 
     GLuint textureID;
     glGenTextures(1, &textureID);
@@ -237,13 +317,11 @@ void Game::InitTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    // Если каналов 4 (RGBA), можешь установить CLAMP_TO_EDGE
     if (channels == 4) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     }
 
-    // Мы просим stbi_load загрузить в RGBA, так что format = GL_RGBA
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
     glGenerateMipmap(GL_TEXTURE_2D);
 
