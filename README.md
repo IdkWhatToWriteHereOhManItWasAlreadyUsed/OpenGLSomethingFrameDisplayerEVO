@@ -97,10 +97,10 @@ displayer.SetThreadCount(4);
 // Thread A: Set video size
 displayer.SetVideoSize(640, 480);
 
-// Thread B: Wait for video size to be set
+// Initialisation Thread : Wait for video size to be set
 displayer.WaitForSetVideoSize();
 
-// Thread C: Wait for engine initialization
+// Thread B: Wait for engine initialization
 displayer.WaitForGameInit();
 ```
 
