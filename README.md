@@ -24,6 +24,7 @@
 ### Dependencies
 - **OpenGL** (scene rendering)
 - **GLFW** (window creation)
+- **Dear ImGui** (GUI for scene adjustments)
 
 ## 🚀 Quick Start
 
@@ -150,6 +151,13 @@ Full-featured video player using FFmpeg and OpenGL:
 ### 3D Model Visualizer (with SDL2)
 *Example coming soon*
 
+## 🐛 Troubleshooting
+
+### Common Issues
+1. **Black screen**: Ensure resources are copied to build directory
+2. **Low FPS**: Reduce video resolution or increase thread count
+3. **Crashes on macOS**: Verify initialization occurs in main thread
+
 ### Resource Structure
 ```
 build/
@@ -157,7 +165,7 @@ build/
 ├── res/
 │   ├── shaders/
 │   ├── textures/
-│   └── blocks/
+│   └── configs/
 ```
 
 ## 🤝 Contributing
