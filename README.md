@@ -29,7 +29,7 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/OpenGLSomethingFrameDisplayerEVO.git
+git clone https://github.com/yourusername/OpenGLSomethingFrameDisplayerEVO.git](https://github.com/IdkWhatToWriteHereOhManItWasAlreadyUsed/OpenGLSomethingFrameDisplayerEVO)
 ```
 
 ### 2. CMake Integration
