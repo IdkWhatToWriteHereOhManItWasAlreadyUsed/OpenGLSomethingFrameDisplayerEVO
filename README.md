@@ -148,7 +148,7 @@ Full-featured video player using FFmpeg and OpenGL:
 [GitHub Repository](https://github.com/IdkWhatToWriteHereOhManItWasAlreadyUsed/badPlayerMax)
 
 ### 3D Model Visualizer (with SDL2)
-*Example coming soon*
+[GitHub Repository](https://github.com/IdkWhatToWriteHereOhManItWasAlreadyUsed/example_SDL_3D_Model_Viewer)
 
 ### Resource Structure
 ```
