@@ -10,14 +10,7 @@ endif()
 
 # Автоматический сбор исходных файлов
 file(GLOB_RECURSE SOURCE_FILES
-    "*.cpp"
-    "imgui/*.cpp"
-    "libs/*.cpp"
-    "renderer/*.cpp"
-    "ThreadPool/*.cpp"
-    "VectorPool/*.cpp"
-    "videoCore/*.cpp"
-    "videoWorld/*.cpp"
+    "src/*.cpp"
 )
 
 # Создаем библиотеку с простым именем
@@ -25,7 +18,7 @@ add_library(OpenGLSomethingFrameDisplayerEVO STATIC ${SOURCE_FILES})
 
 # Публичные заголовки
 target_include_directories(OpenGLSomethingFrameDisplayerEVO
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 # Настройки компиляции
@@ -77,7 +70,7 @@ target_compile_options(OpenGLSomethingFrameDisplayerEVO PRIVATE
 
 if(LINUX)
     target_compile_options(OpenGLSomethingFrameDisplayerEVO PRIVATE
-        $<$<CONFIG:Release>:-march=native -mtune=native>
+        $<$<CONFIG:Release>: -march=native -mtune=native>
     )
 endif()
 

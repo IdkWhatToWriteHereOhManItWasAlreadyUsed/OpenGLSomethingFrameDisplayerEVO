@@ -171,7 +171,9 @@ void ThreadPool::ThreadProc()
         
         {
             std::unique_lock<std::mutex> lock(m_queueMutex);
-            m_queueCV.wait(lock, [this]() {
+            
+            m_queueCV.wait(lock, [this]() 
+            {
                 return m_needStop || !m_taskQueue.empty();
             });
 

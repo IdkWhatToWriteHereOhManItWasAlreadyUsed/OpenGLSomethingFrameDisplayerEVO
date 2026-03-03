@@ -40,7 +40,7 @@ void VideoWorld::Initialise(int width, int height)
         }
     }
 
-    m_numThreads = globalThreadPool.GetThreadCount();
+    m_numThreads = globalThreadPool.GetThreadCount() * 2;
     m_idsToDelete.resize(m_numThreads);
    // m_blocksGraphicalData.resize(m_numThreads);
 }
@@ -172,8 +172,11 @@ void VideoWorld::DisplayFrame(std::vector<std::vector<uint8_t>>& data)
         а может и нет
         ну, работает хорошо и так сойдет
     */
+   
+    std::lock_guard lock(m_worldMutex);
     for (int stripIndex = 0; stripIndex < m_numThreads; ++stripIndex) 
     {
+        
         int stripHeight = rowsPerStrip;
         if (stripIndex == m_numThreads - 1)
             stripHeight += extraRows;
@@ -190,7 +193,7 @@ void VideoWorld::DisplayFrame(std::vector<std::vector<uint8_t>>& data)
                     auto& checkedChunk = m_loadedChunks[i][j];
                     auto& chunkGraphicalData = checkedChunk->GetGraphicalData();
 
-                    std::lock_guard lock(m_worldMutex);
+                    
                     m_blocksGraphicalData[gtype].DeleteAt
                     (
                         checkedChunk->GetMeshID(gtype)
@@ -207,6 +210,7 @@ void VideoWorld::DisplayFrame(std::vector<std::vector<uint8_t>>& data)
         currentX = endX;
     }
     return;
+
 
 
 

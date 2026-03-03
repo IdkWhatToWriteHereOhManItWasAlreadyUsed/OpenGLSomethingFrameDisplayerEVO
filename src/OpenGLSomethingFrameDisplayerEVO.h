@@ -44,7 +44,7 @@ public:
     
 private:
     static constexpr int MAX_HEIGHT = 25;
-    static constexpr int DOWNSCALE = 1;
+    static constexpr int DOWNSCALE = 2;
     
     static constexpr float MIN_BRIGHTNESS_HEIGHT = 2.0f;
     static constexpr float MAX_BRIGHTNESS_HEIGHT = 4.0f;

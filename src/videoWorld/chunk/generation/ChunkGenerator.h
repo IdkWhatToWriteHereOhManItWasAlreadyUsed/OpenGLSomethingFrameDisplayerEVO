@@ -44,7 +44,7 @@ private:
     static constexpr int WATER_LEVEL = 8;
     static constexpr int STONE_BASE_HEIGHT = 4;
     static constexpr int DIRT_LAYERS = 3;
-    static constexpr float TREE_PROBABILITY = 0.8f;
+    static constexpr float TREE_PROBABILITY = 0.84f;
     static constexpr int MAX_TREES_PER_CHUNK = 3;
     static constexpr int TREE_HEIGHT_MIN = 4;
     static constexpr int TREE_HEIGHT_MAX = 8;
