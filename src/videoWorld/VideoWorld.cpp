@@ -12,7 +12,7 @@
 #include <vector>
 #include <GL/glew.h>
 #include <glm/fwd.hpp>
-#include <renderer/GraphicalDataBuffers/BlocksGraphicalDataBuffer.h>
+#include <renderer/GraphicalDataBuffers/GenericObjectBuffer.h>
 #include "chunk/ChunkInstance.h"
 #include "chunk/rendering/ChunkGraphicalData.h"
 #include "videoWorld/chunk/model/Chunk.h"
@@ -78,7 +78,7 @@ RayCastResult VideoWorld::GetBlockPlayerLooksAt(glm::vec3 rayStart, glm::vec3 ra
     return RayCaster::castRay(rayStart, rayDir, this, distance);
 }
 
-std::array<BlocksGraphicalDataBuffer, static_cast<std::size_t>(GeometryType::Count)>& VideoWorld::GetBlocksGraphicalData()
+std::array<GenericObjectBuffer<BlockMeshData>, static_cast<std::size_t>(GeometryType::Count)>& VideoWorld::GetBlocksGraphicalData()
 {
     return m_blocksGraphicalData;
 }
@@ -201,7 +201,7 @@ void VideoWorld::DisplayFrame(std::vector<std::vector<uint8_t>>& data)
                     checkedChunk->SetMeshID
                     (gtype, 
                         m_blocksGraphicalData[gtype].Write
-                        (chunkGraphicalData.allBlockTypesMeshData[gtype].Data, chunkGraphicalData.aabb)
+                        (BlockMeshData(chunkGraphicalData.aabb, chunkGraphicalData.allBlockTypesMeshData[gtype].Data))
                     );
                 }
             }
@@ -251,7 +251,7 @@ void VideoWorld::DisplayFrame(std::vector<std::vector<uint8_t>>& data)
                             checkedChunk->SetMeshID
                             (gtype, 
                                 m_blocksGraphicalData[gtype].Write
-                                (chunkGraphicalData.allBlockTypesMeshData[gtype].Data, chunkGraphicalData.aabb)
+                                (BlockMeshData(chunkGraphicalData.aabb, chunkGraphicalData.allBlockTypesMeshData[gtype].Data))
                             );
                         }
                     }
@@ -283,7 +283,7 @@ void VideoWorld::DisplayFrame(std::vector<std::vector<uint8_t>>& data)
             for (auto& checkedChunk: chunkLine)           
             {
                 auto& chunkGraphicalData = checkedChunk->GetGraphicalData();
-                checkedChunk->SetMeshID(i, m_blocksGraphicalData[i].Write(chunkGraphicalData.allBlockTypesMeshData[i].Data, chunkGraphicalData.aabb));
+                checkedChunk->SetMeshID(i, m_blocksGraphicalData[i].Write(BlockMeshData(chunkGraphicalData.aabb, chunkGraphicalData.allBlockTypesMeshData[i].Data)));
             }
     }*/
 }

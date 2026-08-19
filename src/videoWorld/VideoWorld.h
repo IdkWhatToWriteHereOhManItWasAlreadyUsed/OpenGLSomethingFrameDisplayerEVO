@@ -2,7 +2,7 @@
 
 #include <cstdint>
 #include <memory>
-#include <renderer/GraphicalDataBuffers/BlocksGraphicalDataBuffer.h>
+#include <renderer/GraphicalDataBuffers/GenericObjectBuffer.h>
 #include <ThreadPool/ThreadPool.h>
 #include "chunk/ChunkInstance.h"
 #include <cmath>
@@ -47,7 +47,7 @@ class VideoWorld
 private:
     //robin_hood::unordered_flat_map<std::pair<int, int>, std::unique_ptr<ChunkInstance>, PairHash> m_loadedChunks;
 
-    std::array<BlocksGraphicalDataBuffer, static_cast<std::size_t>(GeometryType::Count)> m_blocksGraphicalData;
+    std::array<GenericObjectBuffer<BlockMeshData>, static_cast<std::size_t>(GeometryType::Count)> m_blocksGraphicalData;
     std::mutex m_worldMutex;
     int m_loadingDistance = 6;
     int m_height, m_width;
@@ -70,7 +70,7 @@ public:
     void SetBlock(int x, int y, int z, Block block);
     RayCastResult GetBlockPlayerLooksAt(glm::vec3 rayStart, glm::vec3 rayDir, GLfloat distance = 16.0f) const;
 
-    std::array<BlocksGraphicalDataBuffer, static_cast<std::size_t>(GeometryType::Count)>& GetBlocksGraphicalData();
+    std::array<GenericObjectBuffer<BlockMeshData>, static_cast<std::size_t>(GeometryType::Count)>& GetBlocksGraphicalData();
     int GetBuffersCount() { return m_blocksGraphicalData.size();}
 
     std::vector<std::array<robin_hood::unordered_set<GLuint>, static_cast<std::size_t>(GeometryType::Count)>> m_idsToDelete;

@@ -36,14 +36,14 @@ void Game::RenderWorld()
             auto& blocksGraphicalData = world.GetBlocksGraphicalData();
             auto& solidGeometry = blocksGraphicalData[static_cast<int>(GeometryType::Solid)];
             
-            solidGeometry.LoadGraphicalData();
+            solidGeometry.LoadData();
 
             for (auto& bufferItem : solidGeometry)
             {
-                auto [min, max] = bufferItem.aabb;
+                auto [min, max] = bufferItem.data.aabb;
 
                 if (frustum.isAABBVisible(min, max))
-                    AddToBatch(&bufferItem.mesh);
+                    AddToBatch(&bufferItem.data.mesh);
             }
         }
 
@@ -130,12 +130,12 @@ void Game::RenderWorld()
         {
             auto& blocksGraphicalData = world.GetBlocksGraphicalData();
             auto& transparentGeometry = blocksGraphicalData[static_cast<int>(GeometryType::Transparent)];
-            transparentGeometry.LoadGraphicalData();
+            transparentGeometry.LoadData();
             for (auto& bufferItem : transparentGeometry)
             {
-                auto [min, max] = bufferItem.aabb;
+                auto [min, max] = bufferItem.data.aabb;
                 if (frustum.isAABBVisible(min, max))
-                    AddToBatch(&bufferItem.mesh);
+                    AddToBatch(&bufferItem.data.mesh);
             }
         }
 

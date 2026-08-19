@@ -27,6 +27,29 @@ enum class GeometryType: std::size_t
     Count 
 };
 
+struct BlockMeshData
+{
+    Mesh mesh;
+    AABB aabb;
+    VertexDataPair vertexData;
+
+    BlockMeshData() = default;
+    BlockMeshData(AABB aabb, VertexDataPair vertexData)
+        : aabb(std::move(aabb)), vertexData(std::move(vertexData)) {}
+
+    void Create()
+    {
+        mesh.Create();
+        mesh.SetData(vertexData.first, vertexData.second);
+        mesh.SetupMesh();
+    }
+
+    void Delete()
+    {
+        mesh.Delete();
+    }
+};
+
 struct ChunkGraphicalData
 {
     std::array<MeshData, static_cast<std::size_t>(GeometryType::Count)> allBlockTypesMeshData = {};
