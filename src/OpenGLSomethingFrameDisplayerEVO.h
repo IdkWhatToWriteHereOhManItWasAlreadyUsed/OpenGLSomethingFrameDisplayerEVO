@@ -1,6 +1,6 @@
 #pragma once
 
-#include "videoCore/Game.h"
+#include "core/Game.h"
 #include <condition_variable>
 #include <mutex>
 #include <random>

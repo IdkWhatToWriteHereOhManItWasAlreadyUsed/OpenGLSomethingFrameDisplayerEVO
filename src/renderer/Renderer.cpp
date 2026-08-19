@@ -5,7 +5,7 @@
 #include <glm/fwd.hpp>
 #include "Mesh.h"
 #include "Shader.h"
-#include <videoWorld/chunk/rendering/ChunkGraphicalData.h>
+#include <world/chunk/rendering/ChunkGraphicalData.h>
 #include <memory>
 #include <GLFW/glfw3.h>
 #define STB_IMAGE_IMPLEMENTATION
