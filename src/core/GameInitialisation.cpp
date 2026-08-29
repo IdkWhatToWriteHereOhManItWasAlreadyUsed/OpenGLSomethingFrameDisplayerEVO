@@ -40,14 +40,14 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
     bool Game::Initialise(int width, int height, int videoWidth, int videoHeight)
     {
-        std::cout << "Entar game init\n";
+        std::cout << "Enter game init\n";
         m_state.windowHeight = height;
         m_state.windowWidth = width;
 
         if (!InitWindow())
             return false;
 
-        std::cout << "windowt inited\n";
+        std::cout << "window inited\n";
 
         if (!InitIMGUI())
             return false;
@@ -155,11 +155,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
         std::cout << "GLFW context zamuchen" << std::endl;
         glewExperimental = GL_TRUE;
 
-        if (glewInit() != GLEW_OK)
-        {
-            std::cout << "Failed to initialize GLEW" << std::endl;
-            return false;
-        }
+        glewInit();
 
         std::cout << "GLew inited" << std::endl;
 
