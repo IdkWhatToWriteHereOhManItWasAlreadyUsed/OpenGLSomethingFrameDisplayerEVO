@@ -154,28 +154,24 @@ namespace OpenGLSomethingFrameDisplayerEVO
         */
         
         std::lock_guard lock(m_worldMutex);
-        for (int stripIndex = 0; stripIndex < m_numThreads; ++stripIndex)
+
+        m_blocksGraphicalData.Clear();
+
+        for (const auto& row: m_loadedChunks)
         {
-            int stripHeight = rowsPerStrip;
-            if (stripIndex == m_numThreads - 1)
-                stripHeight += extraRows;
-            if (stripHeight == 0) continue;
-
-            const int endX = currentX + stripHeight;
-
-            for (int i = currentX; i < endX; i++)
+            for (const auto& checkedChunk : row)
             {
-                for (const auto & checkedChunk : m_loadedChunks[i])
-                {
-                    auto& chunkGraphicalData = checkedChunk->GetGraphicalData();
-                    m_blocksGraphicalData.DeleteAt (checkedChunk->GetMeshID());
-                    GPUReadyChunkGPUAlignedData dataForBuffer;
-                    dataForBuffer.blockGPUDataArray.SetData(
-                        std::move(chunkGraphicalData.allBlockTypesMeshData.blocksGPUData)
-                        );
-                    checkedChunk->SetMeshID(m_blocksGraphicalData.Write(std::move(dataForBuffer)));
-                }
-                currentX = endX;
+                auto& chunkGraphicalData = checkedChunk->GetGraphicalData();
+
+                //std::cout <<  "d: " << chunkGraphicalData.allBlockTypesMeshData.IDinBuffer << std::endl;
+                //m_blocksGraphicalData.DeleteAt(checkedChunk->GetMeshID());
+                GPUReadyChunkGPUAlignedData dataForBuffer;
+                dataForBuffer.chunkOffset = glm::vec3(
+                    checkedChunk->GetChunkX() * CHUNK_LENGTH, 0.0f, checkedChunk->GetChunkZ() * CHUNK_WIDTH);
+
+                dataForBuffer.rawBlocksGPUData = std::move(chunkGraphicalData.allBlockTypesMeshData.blocksGPUData);
+                checkedChunk->SetMeshID(m_blocksGraphicalData.Write(std::move(dataForBuffer)));
+               // std::cout <<  "a: " << chunkGraphicalData.allBlockTypesMeshData.IDinBuffer << std::endl;
             }
         }
     }
@@ -188,11 +184,14 @@ namespace OpenGLSomethingFrameDisplayerEVO
             for (auto j = 0; j < m_loadedChunks[i].size(); j++)
             {
                 auto newChunk = std::make_unique<ChunkInstance>(i, j);
+
                 ChunkGenerator::GenerateChunk(*newChunk, data);
                 newChunk->InvalidateMeshData();
 
+                const auto idToDelete = m_loadedChunks[i][j]->GetGraphicalData().allBlockTypesMeshData.IDinBuffer;
                 m_loadedChunks[i][j].reset();
                 m_loadedChunks[i][j] = std::move(newChunk);
+                m_loadedChunks[i][j]->SetMeshID(idToDelete);
             }
         }
     }
@@ -224,7 +223,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
                 if (z + 1 < m_loadedChunks[x].size())
                     front = m_loadedChunks[x][z + 1].get();
 
-                const GLuint idToDelete = m_loadedChunks[i][j]->GetGraphicalData().allBlockTypesMeshData.IDinBuffer;
+                const auto idToDelete = m_loadedChunks[x][z]->GetMeshID();
 
                 m_loadedChunks[x][z]->GenerateGraphicalDataIfNeeded(left, right, front, back);
 

@@ -63,6 +63,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
     {
         std::vector<BlockGPUData> rawBlocksGPUData;
         BlockGPUDataArray blockGPUDataArray;
+        glm::vec3 chunkOffset{0.0f};
 
         GPUReadyChunkGPUAlignedData() = default;
 

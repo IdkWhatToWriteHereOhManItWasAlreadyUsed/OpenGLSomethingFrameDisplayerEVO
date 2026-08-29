@@ -50,8 +50,8 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
         std::mutex m_worldMutex;
         int m_loadingDistance = 6;
-        int m_height, m_width;
-        int m_numThreads;
+        int m_height{}, m_width{};
+        int m_numThreads{};
 
         std::vector<std::vector<std::unique_ptr<ChunkInstance>>> m_loadedChunks;
         ThreadPool* m_threadPool = &globalThreadPool;

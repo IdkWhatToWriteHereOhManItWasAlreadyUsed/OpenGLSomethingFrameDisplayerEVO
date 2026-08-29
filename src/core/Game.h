@@ -156,7 +156,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
         void ClearBatchQueue() { m_batchQueue.clear(); }
         void AddToBatch(GPUReadyChunkGPUAlignedData* mesh) { m_batchQueue.push_back(mesh); }
 
-        void RenderMeshes() const;
+        void RenderMeshes(Shader* activeShader) const;
     public:
         void DisplayFrame(std::vector<std::vector<uint8_t>>& data);
 

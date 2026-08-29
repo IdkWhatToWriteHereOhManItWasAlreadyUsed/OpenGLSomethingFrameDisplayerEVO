@@ -62,17 +62,17 @@ namespace OpenGLSomethingFrameDisplayerEVO
                     // Определяем соседей
                     const Block* neighbors[6] = {nullptr};
 
-                    // back (0)
-                    if (x > 0)
-                        neighbors[0] = chunk.GetBlock(x - 1, z, y);
-                    else if (left)
-                        neighbors[0] = left->GetBlock(CHUNK_LENGTH - 1, z, y);
+                    // back (0) — -z
+                    if (z > 0)
+                        neighbors[0] = chunk.GetBlock(x, z - 1, y);
+                    else if (back)
+                        neighbors[0] = back->GetBlock(x, CHUNK_WIDTH - 1, y);
 
-                    // front (1)
-                    if (x < CHUNK_LENGTH - 1)
-                        neighbors[1] = chunk.GetBlock(x + 1, z, y);
-                    else if (right)
-                        neighbors[1] = right->GetBlock(0, z, y);
+                    // front (1) — +z
+                    if (z < CHUNK_WIDTH - 1)
+                        neighbors[1] = chunk.GetBlock(x, z + 1, y);
+                    else if (front)
+                        neighbors[1] = front->GetBlock(x, 0, y);
 
                     // top (2)
                     if (y < CHUNK_HEIGHT - 1)
@@ -82,17 +82,17 @@ namespace OpenGLSomethingFrameDisplayerEVO
                     if (y > 0)
                         neighbors[3] = chunk.GetBlock(x, z, y - 1);
 
-                    // left (4)
-                    if (z > 0)
-                        neighbors[4] = chunk.GetBlock(x, z - 1, y);
-                    else if (back)
-                        neighbors[4] = back->GetBlock(x, CHUNK_WIDTH - 1, y);
+                    // left (4) — -x
+                    if (x > 0)
+                        neighbors[4] = chunk.GetBlock(x - 1, z, y);
+                    else if (left)
+                        neighbors[4] = left->GetBlock(CHUNK_LENGTH - 1, z, y);
 
-                    // right (5)
-                    if (z < CHUNK_WIDTH - 1)
-                        neighbors[5] = chunk.GetBlock(x, z + 1, y);
-                    else if (front)
-                        neighbors[5] = front->GetBlock(x, 0, y);
+                    // right (5) — +x
+                    if (x < CHUNK_LENGTH - 1)
+                        neighbors[5] = chunk.GetBlock(x + 1, z, y);
+                    else if (right)
+                        neighbors[5] = right->GetBlock(0, z, y);
 
                     // Определяем видимые грани
                     for (int i = 0; i < 6; i++)

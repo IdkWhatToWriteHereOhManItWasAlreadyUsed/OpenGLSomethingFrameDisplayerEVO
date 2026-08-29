@@ -58,6 +58,15 @@ namespace OpenGLSomethingFrameDisplayerEVO
                               reinterpret_cast<void*>(offset));
     }
 
+    void ArrayObject::AttribIPointer(GLuint index, GLint elementsPerVertex, AttribType type, GLsizei stride,
+                                     GLsizei offset)
+    {
+        m_attribsList.push_back(index);
+        glEnableVertexAttribArray(index);
+        glVertexAttribIPointer(index, elementsPerVertex, static_cast<GLenum>(type), stride,
+                               reinterpret_cast<void*>(offset));
+    }
+
     void ArrayObject::DrawElements(GLint start, GLsizei count)
     {
         Activate();

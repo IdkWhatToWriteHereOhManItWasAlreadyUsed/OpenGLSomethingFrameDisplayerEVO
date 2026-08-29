@@ -6,6 +6,7 @@
 #include <vector>
 #include <libs/robin_hood.h>
 #include <GL/glew.h>
+#include <iostream>
 #include <type_traits>
 
 namespace OpenGLSomethingFrameDisplayerEVO
@@ -28,7 +29,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
     struct PendingObjectWrite
     {
         T data;
-        GLuint id;
+        GLuint id{};
 
         PendingObjectWrite() = default;
 
@@ -53,7 +54,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
     private:
         using PendingWritesVector = std::vector<PendingObjectWrite<T>>;
         using ItemsVector = std::vector<ObjectBufferItem<T>>;
-
+        std::stack<GLuint> m_tempIds;
     public:
         // Конструктор с возможностью указать начальную емкость
         explicit GenericObjectBuffer(size_t initialCapacity = 6222)
@@ -66,7 +67,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
             m_items.resize(initialCapacity);
 
             // Предварительное заполнение стека свободных ID
-            for (int i = static_cast<int>(initialCapacity) - 1; i >= 0; --i)
+            for (int i = static_cast<int>(initialCapacity) - 1; i >= 1; --i)
                 m_freeIds.push(i);
             m_maxId = static_cast<GLuint>(initialCapacity);
         }
@@ -91,31 +92,46 @@ namespace OpenGLSomethingFrameDisplayerEVO
             std::lock_guard<std::mutex> lock(m_mutex);
 
             GLuint id;
+            bool found = false;
+
+            // 1. Сначала проверяем свободные ID
             if (!m_freeIds.empty())
             {
                 id = m_freeIds.top();
                 m_freeIds.pop();
+                found = true;
             }
+            // 2. Если свободных нет, берем из удаленных (они уже не используются)
+            else if (!m_pendingDeletions.empty())
+            {
+                id = m_pendingDeletions.top();
+                m_pendingDeletions.pop();
+                found = true;
+            }
+            // 3. Если и там пусто, создаем новый
             else
             {
                 id = m_maxId++;
+                if (id >= m_items.size())
+                    m_items.resize(id + 1);
             }
 
             m_pendingWrites.emplace_back(std::move(data), id);
             m_pendingIds.insert(id);
-
             return id;
         }
+
 
         // Пометить объект на удаление (отложенная операция)
         void DeleteAt(GLuint id)
         {
-            std::lock_guard<std::mutex> lock(m_mutex);
+            std::lock_guard lock(m_mutex);
             if (id == 0) return;
 
             if (id < m_items.size() && !m_items[id].isDeleted)
             {
                 m_pendingDeletions.push(id);
+                //std::cout << "d: " << id << std::endl;
             }
         }
 
@@ -133,6 +149,19 @@ namespace OpenGLSomethingFrameDisplayerEVO
                 m_freeIds.pop();
 
             m_maxId = 0;
+
+            constexpr auto initialCapacity = 62222;
+
+            m_items.reserve(initialCapacity);
+            m_pendingWrites.reserve(initialCapacity);
+            m_pendingIds.reserve(initialCapacity);
+
+            m_items.resize(initialCapacity);
+
+            // Предварительное заполнение стека свободных ID
+            for (int i = static_cast<int>(initialCapacity) - 1; i >= 1; --i)
+                m_freeIds.push(i);
+            m_maxId = static_cast<GLuint>(initialCapacity);
         }
 
         // Применить все отложенные операции (запись и удаление)
@@ -141,6 +170,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
             std::lock_guard<std::mutex> lock(m_mutex);
 
             // Обработка удалений
+            // В LoadData() при обработке удалений
             while (!m_pendingDeletions.empty())
             {
                 GLuint id = m_pendingDeletions.top();
@@ -148,14 +178,24 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
                 if (id < m_items.size() && !m_items[id].isDeleted)
                 {
-                    // Если объект имеет метод Delete - вызываем его
-                    if constexpr (requires { m_items[id].data.Delete(); })
-                    {
-                        m_items[id].data.Delete();
-                    }
-
+                    m_items[id].data.Delete();
+                   // std::cout << "d: " << id << std::endl;
                     m_items[id].isDeleted = true;
-                    m_freeIds.push(id);
+
+                    // Возвращаем в freeIds ТОЛЬКО если этот ID не используется в pendingWrites
+                    bool isUsedInPending = false;
+                    for (const auto& pending : m_pendingWrites)
+                    {
+                        if (pending.id == id)
+                        {
+                            isUsedInPending = true;
+                            break;
+                        }
+                    }
+                    if (!isUsedInPending)
+                    {
+                        m_freeIds.push(id);
+                    }
                 }
             }
 
@@ -169,9 +209,10 @@ namespace OpenGLSomethingFrameDisplayerEVO
                     m_items.resize(id + 1);
 
                 // Если объект имеет метод Create - вызываем его
-                if constexpr (requires { pending.data.Create(); })
+               // if constexpr (requires { pending.data.Create(); })
                 {
                     pending.data.Create();
+                   // std::cout << "а: " << id << std::endl;
                 }
 
                 // Перемещаем данные

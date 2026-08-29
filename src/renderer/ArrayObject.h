@@ -29,6 +29,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
         bool IsActive() const;
 
         void AttribPointer(GLuint index, GLint elementsPerVertex, AttribType type, GLsizei stride, GLsizei offset);
+        void AttribIPointer(GLuint index, GLint elementsPerVertex, AttribType type, GLsizei stride, GLsizei offset);
 
         void DrawElements(GLint start, GLsizei count);
         void DrawArrays(GLint start, GLsizei count);

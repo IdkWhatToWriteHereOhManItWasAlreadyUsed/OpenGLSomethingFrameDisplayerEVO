@@ -121,7 +121,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
         ImGui::StyleColorsDark();
         ImGui_ImplGlfw_InitForOpenGL(window, true);
-        ImGui_ImplOpenGL3_Init("#version 330");
+        ImGui_ImplOpenGL3_Init("#version 420");
         return true;
     }
 
@@ -134,8 +134,8 @@ namespace OpenGLSomethingFrameDisplayerEVO
 #endif
         glfwInit();
         std::cout << "GLFW inited" << std::endl;
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 
@@ -211,22 +211,19 @@ namespace OpenGLSomethingFrameDisplayerEVO
             fs::path basePath = fs::current_path();
 
             fs::path defaultVert = basePath / "res" / "shaders" / "default.vs.glsl";
+            fs::path defaultGeo = basePath / "res" / "shaders" / "default.gs.glsl";
             fs::path defaultFrag = basePath / "res" / "shaders" / "default.frag.glsl";
 
-            if (!fs::exists(defaultVert))
+            if (!fs::exists(defaultVert) || !fs::exists(defaultGeo) || !fs::exists(defaultFrag))
             {
-                std::cout << "Shader not found: " << defaultVert << std::endl;
-                return false;
-            }
-            if (!fs::exists(defaultFrag))
-            {
-                std::cout << "Shader not found: " << defaultFrag << std::endl;
+                std::cout << "Default shaders not found" << std::endl;
                 return false;
             }
 
             defaultShader = std::make_unique<Shader>(
                 defaultVert.string().c_str(),
-                defaultFrag.string().c_str()
+                defaultFrag.string().c_str(),
+                defaultGeo.string().c_str()
             );
 
             fs::path hilightVert = basePath / "res" / "shaders" / "hilight.vs.glsl";
@@ -244,9 +241,10 @@ namespace OpenGLSomethingFrameDisplayerEVO
             );
 
             fs::path zPrepassVert = basePath / "res" / "shaders" / "zPrepass.vs.glsl";
+            fs::path zPrepassGeo = basePath / "res" / "shaders" / "zPrepass.gs.glsl";
             fs::path zPrepassFrag = basePath / "res" / "shaders" / "zPrepass.frag.glsl";
 
-            if (!fs::exists(zPrepassVert) || !fs::exists(zPrepassFrag))
+            if (!fs::exists(zPrepassVert) || !fs::exists(zPrepassGeo) || !fs::exists(zPrepassFrag))
             {
                 std::cout << "ZPrepass shaders not found" << std::endl;
                 return false;
@@ -254,13 +252,15 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
             zPrepassShader = std::make_unique<Shader>(
                 zPrepassVert.string().c_str(),
-                zPrepassFrag.string().c_str()
+                zPrepassFrag.string().c_str(),
+                zPrepassGeo.string().c_str()
             );
 
             fs::path geometryVert = basePath / "res" / "shaders" / "gPass.vs.glsl";
+            fs::path geometryGeo = basePath / "res" / "shaders" / "gPass.gs.glsl";
             fs::path geometryFrag = basePath / "res" / "shaders" / "gPass.frag.glsl";
 
-            if (!fs::exists(geometryVert) || !fs::exists(geometryFrag))
+            if (!fs::exists(geometryVert) || !fs::exists(geometryGeo) || !fs::exists(geometryFrag))
             {
                 std::cout << "Geometry shaders not found" << std::endl;
                 return false;
@@ -268,7 +268,8 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
             geometryShader = std::make_unique<Shader>(
                 geometryVert.string().c_str(),
-                geometryFrag.string().c_str()
+                geometryFrag.string().c_str(),
+                geometryGeo.string().c_str()
             );
 
             fs::path lightingVert = basePath / "res" / "shaders" / "lightPass.vs.glsl";

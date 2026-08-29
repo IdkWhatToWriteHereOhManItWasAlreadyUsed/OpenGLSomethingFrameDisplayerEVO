@@ -46,22 +46,28 @@ namespace OpenGLSomethingFrameDisplayerEVO
     {
         m_VAO.Activate();
         m_VBO.SetData(m_blocks, GL_DYNAMIC_DRAW);
-        // Position (ivec3)
-        m_VAO.AttribPointer(0, 3, AttribType::Int, sizeof(BlockGPUData), offsetof(BlockGPUData, position));
-        // texCoords (uint8_t[12]) - передаём как массив из 12 байт
-        m_VAO.AttribPointer(1, 12, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, texCoords));
-        // geometryIndex (uint8_t)
-        m_VAO.AttribPointer(2, 1, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, geometryIndex));
-        // flags (uint8_t)
-        m_VAO.AttribPointer(3, 1, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, flags));
-        // visibleFaces (uint8_t)
-        m_VAO.AttribPointer(4, 1, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, visibleFaces));
+        // position (ivec3)
+        m_VAO.AttribIPointer(0, 3, AttribType::Int, sizeof(BlockGPUData), offsetof(BlockGPUData, position));
+        // texCoords[0..3] (uvec4)
+        m_VAO.AttribIPointer(1, 4, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, texCoords));
+        // texCoords[4..7] (uvec4)
+        m_VAO.AttribIPointer(2, 4, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, texCoords) + 4);
+        // texCoords[8..11] (uvec4)
+        m_VAO.AttribIPointer(3, 4, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, texCoords) + 8);
+        // geometryIndex (uint)
+        m_VAO.AttribIPointer(4, 1, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, geometryIndex));
+        // flags (uint)
+        m_VAO.AttribIPointer(5, 1, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, flags));
+        // visibleFaces (uint)
+        m_VAO.AttribIPointer(6, 1, AttribType::UnsignedByte, sizeof(BlockGPUData), offsetof(BlockGPUData, visibleFaces));
         m_VAO.Deactivate();
     }
 
     void BlockGPUDataArray::Draw()
     {
-        m_VAO.DrawArrays(0, m_blocks.size());
+        m_VAO.Activate();
+        glDrawArrays(GL_POINTS, 0, static_cast<GLsizei>(m_blocks.size()));
+        m_VAO.Deactivate();
     }
 
     void BlockGPUDataArray::Delete()
