@@ -5,32 +5,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 2,
           "texture_z": 0
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 2,
           "texture_z": 0
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 2,
           "texture_z": 0
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 2,
           "texture_z": 0
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 2,
           "texture_z": 0
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 2,
           "texture_z": 0
         }
@@ -43,32 +43,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 1,
           "texture_z": 0
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 1,
           "texture_z": 0
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 1,
           "texture_z": 0
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 1,
           "texture_z": 0
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 1,
           "texture_z": 0
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 1,
           "texture_z": 0
         }
@@ -81,32 +81,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 4,
           "texture_z": 0
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 4,
           "texture_z": 0
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 4,
           "texture_z": 0
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 4,
           "texture_z": 0
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 4,
           "texture_z": 0
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 4,
           "texture_z": 0
         }
@@ -126,32 +126,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 4,
           "texture_z": 1
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 4,
           "texture_z": 1
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 5,
           "texture_z": 1
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 5,
           "texture_z": 1
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 4,
           "texture_z": 1
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 4,
           "texture_z": 1
         }
@@ -182,32 +182,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 0,
           "texture_z": 1
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 0,
           "texture_z": 1
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 0,
           "texture_z": 1
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 0,
           "texture_z": 1
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 0,
           "texture_z": 1
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 0,
           "texture_z": 1
         }
@@ -220,32 +220,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 3,
           "texture_z": 0
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 3,
           "texture_z": 0
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 0,
           "texture_z": 0
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 2,
           "texture_z": 0
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 3,
           "texture_z": 0
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 3,
           "texture_z": 0
         }
@@ -276,32 +276,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 4,
           "texture_z": 3
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 4,
           "texture_z": 3
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 4,
           "texture_z": 3
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 4,
           "texture_z": 3
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 4,
           "texture_z": 3
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 4,
           "texture_z": 3
         }
@@ -314,7 +314,7 @@
       "geometry_type": "water",
       "faces": [
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 14,
           "texture_z": 12
         }
@@ -327,32 +327,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 1,
           "texture_z": 3
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 1,
           "texture_z": 3
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 1,
           "texture_z": 3
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 1,
           "texture_z": 3
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 1,
           "texture_z": 3
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 1,
           "texture_z": 3
         }
@@ -419,32 +419,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 2,
           "texture_z": 1
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 2,
           "texture_z": 1
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 2,
           "texture_z": 1
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 2,
           "texture_z": 1
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 2,
           "texture_z": 1
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 2,
           "texture_z": 1
         }
@@ -457,32 +457,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 1,
           "texture_z": 1
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 1,
           "texture_z": 1
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 1,
           "texture_z": 1
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 1,
           "texture_z": 1
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 1,
           "texture_z": 1
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 1,
           "texture_z": 1
         }
@@ -495,32 +495,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 6,
           "texture_z": 1
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 6,
           "texture_z": 1
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 6,
           "texture_z": 1
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 6,
           "texture_z": 1
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 6,
           "texture_z": 1
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 6,
           "texture_z": 1
         }
@@ -533,32 +533,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 8,
           "texture_z": 0
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 8,
           "texture_z": 0
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 9,
           "texture_z": 0
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 10,
           "texture_z": 0
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 8,
           "texture_z": 0
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 8,
           "texture_z": 0
         }
@@ -571,32 +571,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 2,
           "texture_z": 2
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 2,
           "texture_z": 2
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 2,
           "texture_z": 2
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 2,
           "texture_z": 2
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 2,
           "texture_z": 2
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 2,
           "texture_z": 2
         }
@@ -609,32 +609,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 1,
           "texture_z": 2
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 0,
           "texture_z": 0
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 1,
           "texture_z": 2
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 1,
           "texture_z": 2
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 1,
           "texture_z": 2
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 1,
           "texture_z": 2
         }
@@ -647,32 +647,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 0,
           "texture_z": 2
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 0,
           "texture_z": 2
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 0,
           "texture_z": 2
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 0,
           "texture_z": 2
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 0,
           "texture_z": 2
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 0,
           "texture_z": 2
         }
@@ -685,32 +685,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 2,
           "texture_z": 3
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 2,
           "texture_z": 3
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 2,
           "texture_z": 3
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 2,
           "texture_z": 3
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 2,
           "texture_z": 3
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 2,
           "texture_z": 3
         }
@@ -723,32 +723,32 @@
       "geometry_type": "cube",
       "faces": [
         {
-          "face_name": "back_face",
+          "face_name": "back",
           "texture_x": 9,
           "texture_z": 2
         },
         {
-          "face_name": "front_face",
+          "face_name": "front",
           "texture_x": 9,
           "texture_z": 2
         },
         {
-          "face_name": "top_face",
+          "face_name": "top",
           "texture_x": 9,
           "texture_z": 2
         },
         {
-          "face_name": "bottom_face",
+          "face_name": "bottom",
           "texture_x": 9,
           "texture_z": 2
         },
         {
-          "face_name": "left_face",
+          "face_name": "left",
           "texture_x": 9,
           "texture_z": 2
         },
         {
-          "face_name": "right_face",
+          "face_name": "right",
           "texture_x": 9,
           "texture_z": 2
         }
