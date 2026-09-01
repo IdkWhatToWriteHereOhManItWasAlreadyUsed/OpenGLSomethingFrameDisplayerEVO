@@ -40,18 +40,6 @@ namespace OpenGLSomethingFrameDisplayerEVO
                 }
             }
 
-            // Проверка состояния OpenGL
-            GLenum err;
-            while ((err = glGetError()) != GL_NO_ERROR) {
-                std::cout << "OpenGL error before rendering: " << err << std::endl;
-            }
-
-            if (!glfwGetCurrentContext()) {
-                std::cout << "ERROR: No context before rendering!" << std::endl;
-                glfwMakeContextCurrent(window);
-            }
-
-            std::cout << "Starting render..." << std::endl;
             glClearColor(0.33f, 0.66f, 1.0f, 1.0f);
 
 
@@ -190,7 +178,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
     void Game::RenderLine(const glm::vec3& start, const glm::vec3& end, const glm::vec4& color, float thickness) const
     {
         static GLuint VAO = 0, VBO = 0;
-        glm::vec3 vertices[] = {start, end};
+        const glm::vec3 vertices[] = {start, end};
 
         if (VAO == 0)
         {
@@ -209,7 +197,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
         hilightShader->Use();
 
-        glm::mat4 projection = glm::perspective(
+        const glm::mat4 projection = glm::perspective(
             glm::radians(camera.Zoom),
             static_cast<GLfloat>(m_state.windowWidth) / static_cast<GLfloat>(m_state.windowHeight),
             0.1f,
