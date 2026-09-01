@@ -139,7 +139,12 @@ namespace OpenGLSomethingFrameDisplayerEVO
         void Clear()
         {
             std::lock_guard<std::mutex> lock(m_mutex);
+            for (auto& item : m_items)
+            {
+                item.data.Delete();
+            }
             m_items.clear();
+
             m_pendingWrites.clear();
             m_pendingIds.clear();
 

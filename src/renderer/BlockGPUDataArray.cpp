@@ -67,6 +67,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
     {
         if (m_blocks.empty())
             return;
+
         m_VAO.Activate();
         glDrawArrays(GL_POINTS, 0, static_cast<GLsizei>(m_blocks.size()));
         m_VAO.Deactivate();

@@ -42,6 +42,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
             glClearColor(0.33f, 0.66f, 1.0f, 1.0f);
 
+
             /*
             if (m_state.useZPrepass)
             {
@@ -177,7 +178,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
     void Game::RenderLine(const glm::vec3& start, const glm::vec3& end, const glm::vec4& color, float thickness) const
     {
         static GLuint VAO = 0, VBO = 0;
-        glm::vec3 vertices[] = {start, end};
+        const glm::vec3 vertices[] = {start, end};
 
         if (VAO == 0)
         {
@@ -196,7 +197,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
         hilightShader->Use();
 
-        glm::mat4 projection = glm::perspective(
+        const glm::mat4 projection = glm::perspective(
             glm::radians(camera.Zoom),
             static_cast<GLfloat>(m_state.windowWidth) / static_cast<GLfloat>(m_state.windowHeight),
             0.1f,
@@ -448,25 +449,11 @@ namespace OpenGLSomethingFrameDisplayerEVO
     {
         ActivateTexture();
 
-        static int diagFrame = 0;
-        diagFrame++;
-        size_t totalBlocks = 0;
         for (const auto mesh : m_batchQueue)
         {
             activeShader->SetUniform3f("chunkOffset", mesh->chunkOffset);
             mesh->blockGPUDataArray.Draw();
-            totalBlocks += mesh->blockGPUDataArray.getBlocks().size();
-            GLenum err = glGetError();
-            if (err != GL_NO_ERROR)
-                std::cout << "GLERR after Draw: " << std::hex << err << std::dec << std::endl;
         }
-        if (diagFrame % 120 == 0)
-        {
-            std::cout << "RenderMeshes: batch=" << m_batchQueue.size()
-                      << " totalBlocks=" << totalBlocks
-                      << std::endl;
-        }
-        //std::cout << m_batchQueue.size() << '\n';
 
         glBindTexture(GL_TEXTURE_2D, 0);
     }
