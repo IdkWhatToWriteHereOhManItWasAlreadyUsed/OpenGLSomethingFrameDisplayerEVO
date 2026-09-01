@@ -461,25 +461,11 @@ namespace OpenGLSomethingFrameDisplayerEVO
     {
         ActivateTexture();
 
-        static int diagFrame = 0;
-        diagFrame++;
-        size_t totalBlocks = 0;
         for (const auto mesh : m_batchQueue)
         {
             activeShader->SetUniform3f("chunkOffset", mesh->chunkOffset);
             mesh->blockGPUDataArray.Draw();
-            totalBlocks += mesh->blockGPUDataArray.getBlocks().size();
-            GLenum err = glGetError();
-            if (err != GL_NO_ERROR)
-                std::cout << "GLERR after Draw: " << std::hex << err << std::dec << std::endl;
         }
-        if (diagFrame % 120 == 0)
-        {
-            std::cout << "RenderMeshes: batch=" << m_batchQueue.size()
-                      << " totalBlocks=" << totalBlocks
-                      << std::endl;
-        }
-        //std::cout << m_batchQueue.size() << '\n';
 
         glBindTexture(GL_TEXTURE_2D, 0);
     }
