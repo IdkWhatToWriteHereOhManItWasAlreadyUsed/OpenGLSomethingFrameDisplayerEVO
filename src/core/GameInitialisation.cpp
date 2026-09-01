@@ -121,7 +121,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
         ImGui::StyleColorsDark();
         ImGui_ImplGlfw_InitForOpenGL(window, true);
-        ImGui_ImplOpenGL3_Init("#version 420");
+        ImGui_ImplOpenGL3_Init("#version 330");
         return true;
     }
 
@@ -134,13 +134,12 @@ namespace OpenGLSomethingFrameDisplayerEVO
 #endif
         glfwInit();
         std::cout << "GLFW inited" << std::endl;
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-
-        // macOS?
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#if defined(__APPLE__)
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // macOS: core profile требует forward compat
+#endif
 
         window = glfwCreateWindow(m_state.windowWidth, m_state.windowHeight, "OpenGLSomething", nullptr, nullptr);
         std::cout << "GLFW window created" << std::endl;

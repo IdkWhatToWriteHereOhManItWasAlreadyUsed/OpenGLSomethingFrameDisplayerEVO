@@ -208,11 +208,18 @@ namespace OpenGLSomethingFrameDisplayerEVO
                 if (id >= m_items.size())
                     m_items.resize(id + 1);
 
+                // ID мог быть переиспользован до обработки удаления (Write забрал его из
+                // pendingDeletions, пока объект ещё жив). Освобождаем слот до перезаписи,
+                // иначе старые VAO/VBO и данные утекают каждый кадр.
+                if (!m_items[id].isDeleted)
+                    m_items[id].data.Delete();
+                m_items[id].isDeleted = true;
+
                 // Если объект имеет метод Create - вызываем его
-               // if constexpr (requires { pending.data.Create(); })
+                // if constexpr (requires { pending.data.Create(); })
                 {
                     pending.data.Create();
-                   // std::cout << "а: " << id << std::endl;
+                    // std::cout << "а: " << id << std::endl;
                 }
 
                 // Перемещаем данные

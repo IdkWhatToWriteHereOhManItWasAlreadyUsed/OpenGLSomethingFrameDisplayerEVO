@@ -155,23 +155,20 @@ namespace OpenGLSomethingFrameDisplayerEVO
         
         std::lock_guard lock(m_worldMutex);
 
-        m_blocksGraphicalData.Clear();
-
         for (const auto& row: m_loadedChunks)
         {
             for (const auto& checkedChunk : row)
             {
                 auto& chunkGraphicalData = checkedChunk->GetGraphicalData();
 
-                //std::cout <<  "d: " << chunkGraphicalData.allBlockTypesMeshData.IDinBuffer << std::endl;
-                //m_blocksGraphicalData.DeleteAt(checkedChunk->GetMeshID());
+                m_blocksGraphicalData.DeleteAt(checkedChunk->GetMeshID());
+
                 GPUReadyChunkGPUAlignedData dataForBuffer;
                 dataForBuffer.chunkOffset = glm::vec3(
                     checkedChunk->GetChunkX() * CHUNK_LENGTH, 0.0f, checkedChunk->GetChunkZ() * CHUNK_WIDTH);
 
                 dataForBuffer.rawBlocksGPUData = std::move(chunkGraphicalData.allBlockTypesMeshData.blocksGPUData);
                 checkedChunk->SetMeshID(m_blocksGraphicalData.Write(std::move(dataForBuffer)));
-               // std::cout <<  "a: " << chunkGraphicalData.allBlockTypesMeshData.IDinBuffer << std::endl;
             }
         }
     }

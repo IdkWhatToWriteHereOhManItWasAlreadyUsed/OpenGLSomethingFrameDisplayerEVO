@@ -11,16 +11,22 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
     ArrayObject::ArrayObject(ArrayObject&& other) noexcept
     {
-        glDeleteVertexArrays(1, &m_arrayID);
         m_arrayID = other.m_arrayID;
+        other.m_arrayID = 0;
+        m_active = other.m_active;
+        other.m_active = false;
+        m_attribsList = std::move(other.m_attribsList);
     }
 
     ArrayObject& ArrayObject::operator=(ArrayObject&& other) noexcept
     {
         if (this != &other)
         {
-            glDeleteVertexArrays(1, &m_arrayID);
             m_arrayID = other.m_arrayID;
+            other.m_arrayID = 0;
+            m_active = other.m_active;
+            other.m_active = false;
+            m_attribsList = std::move(other.m_attribsList);
         }
         return *this;
     }
