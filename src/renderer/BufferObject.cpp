@@ -12,10 +12,8 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
     BufferObject::BufferObject(BufferObject&& other) noexcept
     {
-        // glGenBuffers(1, &m_bufferID);
-        // std::cout << "add " << m_arrayID << '\n';
-        glDeleteVertexArrays(1, &m_bufferID);
         m_bufferID = other.m_bufferID;
+        other.m_bufferID = 0;
         m_type = other.m_type;
     }
 
@@ -23,10 +21,8 @@ namespace OpenGLSomethingFrameDisplayerEVO
     {
         if (this != &other)
         {
-            // glGenBuffers(1, &m_bufferID);
-            //  std::cout << "add " << m_arrayID << '\n';
-            glDeleteVertexArrays(1, &m_bufferID);
             m_bufferID = other.m_bufferID;
+            other.m_bufferID = 0;
             m_type = other.m_type;
         }
         return *this;

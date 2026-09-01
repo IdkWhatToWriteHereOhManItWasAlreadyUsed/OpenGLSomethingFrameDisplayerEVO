@@ -29,11 +29,8 @@ namespace OpenGLSomethingFrameDisplayerEVO
         template <typename T>
         void SetData(const std::vector<T>& data, GLenum hint)
         {
-            if (data.empty())
-                return;
-
             Activate();
-            glBufferData(m_type, data.size() * sizeof(T), data.data(), hint);
+            glBufferData(m_type, data.size() * sizeof(T), data.empty() ? nullptr : data.data(), hint);
         }
 
         void Create();
