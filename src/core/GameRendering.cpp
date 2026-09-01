@@ -40,7 +40,20 @@ namespace OpenGLSomethingFrameDisplayerEVO
                 }
             }
 
+            // Проверка состояния OpenGL
+            GLenum err;
+            while ((err = glGetError()) != GL_NO_ERROR) {
+                std::cout << "OpenGL error before rendering: " << err << std::endl;
+            }
+
+            if (!glfwGetCurrentContext()) {
+                std::cout << "ERROR: No context before rendering!" << std::endl;
+                glfwMakeContextCurrent(window);
+            }
+
+            std::cout << "Starting render..." << std::endl;
             glClearColor(0.33f, 0.66f, 1.0f, 1.0f);
+
 
             /*
             if (m_state.useZPrepass)

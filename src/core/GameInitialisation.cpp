@@ -140,7 +140,7 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
 
         // macOS?
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
         window = glfwCreateWindow(m_state.windowWidth, m_state.windowHeight, "OpenGLSomething", nullptr, nullptr);
         std::cout << "GLFW window created" << std::endl;
@@ -153,11 +153,27 @@ namespace OpenGLSomethingFrameDisplayerEVO
 
         glfwMakeContextCurrent(window);
         std::cout << "GLFW context zamuchen" << std::endl;
-        glewExperimental = GL_TRUE;
+       // glewExperimental = GL_TRUE;
 
-        glewInit();
-
+        GLenum err = glewInit();
+        if (err != GLEW_OK) {
+            std::cout << "GLEW Error: " << glewGetErrorString(err) << std::endl;
+            return false;
+        }
         std::cout << "GLew inited" << std::endl;
+        glGetError();
+
+
+
+        std::cout << "OpenGL Vendor: " << glGetString(GL_VENDOR) << std::endl;
+        std::cout << "OpenGL Renderer: " << glGetString(GL_RENDERER) << std::endl;
+
+        if (!glClear) {
+            std::cout << "ERROR: glClear not loaded!" << std::endl;
+        }
+        if (!glDrawArrays) {
+            std::cout << "ERROR: glDrawArrays not loaded!" << std::endl;
+        }
 
         glfwSwapInterval(1);
 
